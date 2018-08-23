@@ -1,4 +1,4 @@
-.PHONY: all deps osxkeychain secretservice test validate wincred pass deb
+.PHONY: all deps osxkeychain secretservice test validate wincred pass deb awsssm
 
 TRAVIS_OS_NAME ?= linux
 VERSION := $(shell grep 'const Version' credentials/version.go | awk -F'"' '{ print $$2 }')
@@ -42,6 +42,10 @@ winrelease: clean vet_win lint fmt test wincred
 	mkdir -p release
 	@echo "\nPackaging version ${VERSION}\n"
 	cd bin && zip ../release/docker-credential-wincred-v$(VERSION)-amd64.zip docker-credential-wincred.exe
+
+awsssm:
+	mkdir -p bin
+	go build -o bin/docker-credential-awsssm awsssm/cmd/main_linux.go
 
 test:
 	# tests all packages except vendor
