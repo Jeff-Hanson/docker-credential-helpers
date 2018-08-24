@@ -15,7 +15,7 @@ func main() {
 
 	sess, err := session.NewSession(aws.NewConfig().
 	  WithRegion("us-east-2").
-	  WithCredentials(awscreds.NewSharedCredentials("", "credo-auth")))
+	  WithCredentials(awscreds.NewSharedCredentials("", "default")))
 	if err != nil {
 		panic(fmt.Sprintf("Failed to get session: %v", err))
 	}
