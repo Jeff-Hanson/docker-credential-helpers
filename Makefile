@@ -45,7 +45,7 @@ winrelease: clean vet_win lint fmt test wincred
 
 awsssm:
 	mkdir -p bin
-	go build -o bin/docker-credential-awsssm awsssm/cmd/main_linux.go
+	go build -o bin/docker-credential-awsssm awsssm/cmd/main_darwin.go
 
 test:
 	# tests all packages except vendor

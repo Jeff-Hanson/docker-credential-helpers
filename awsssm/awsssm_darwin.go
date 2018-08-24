@@ -21,6 +21,7 @@ func (h Awsssm) Add(creds *credentials.Credentials) error {
 		return errors.New("missing credentials")
 	}
 
+	//  Need to pad with '.' since default padding is '=' and that is not a valid ssm path character
 	encoded := base64.URLEncoding.WithPadding('.').EncodeToString([]byte(creds.ServerURL))
 
 	secretparam := (&ssm.PutParameterInput{}).
@@ -53,6 +54,7 @@ func (h Awsssm) Delete(serverURL string) error {
 		return errors.New("missing server url")
 	}
 
+	//  Need to pad with '.' since default padding is '=' and that is not a valid ssm path character
   encoded := base64.URLEncoding.WithPadding('.').EncodeToString([]byte(serverURL))
 	delsecretparam := (&ssm.DeleteParameterInput{}).
 		SetName(credsSsmPathPrefix+encoded+"/secret")
@@ -76,6 +78,7 @@ func (h Awsssm) Get(serverURL string) (string, string, error) {
 
 	var username, password string
 
+	//  Need to pad with '.' since default padding is '=' and that is not a valid ssm path character
 	encoded := base64.URLEncoding.WithPadding('.').EncodeToString([]byte(serverURL))
 
 	getsecretparam := (&ssm.GetParameterInput{}).
