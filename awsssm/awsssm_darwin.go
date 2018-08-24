@@ -1,5 +1,6 @@
 package awsssm
 
+// TODO - Add ENV var to define path prefix for SSM param name.
 import (
 	"encoding/base64"
 	"errors"
@@ -8,7 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/ssm"
 )
 
-// Pass handles secrets using Linux secret-service as a store.
+// Awsssm handles secrets stored in AWS SSM param store
 type Awsssm struct{
 	Svc *ssm.SSM
 }

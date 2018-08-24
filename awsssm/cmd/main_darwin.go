@@ -1,5 +1,7 @@
 package main
 
+// TODO - add code to either take in AWS credentials from ENV or take in profile from ENV.
+
 import (
 	"fmt"
 
